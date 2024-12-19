@@ -93,7 +93,7 @@ class PreciosTurSensor(SensorEntity):
         # Sensor configuration
         self._attr_device_class = SensorDeviceClass.MONETARY
         self._attr_state_class = SensorStateClass.MEASUREMENT
-        self._attr_unit_of_measurement = CURRENCY_EURO
+        self._attr_unit_of_measurement = CURRENCY_EURO if rate_type == ATTR_FIXED_RATE else "EUR/kWh"
 
     @property
     def available(self) -> bool:
