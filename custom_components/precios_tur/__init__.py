@@ -24,9 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     _LOGGER.info("Setting up Precios TUR entry")
 
     # Create the coordinator
-    coordinator = PreciosTurCoordinator(
-        hass, entry.data[CONF_URL], entry.data["category"]
-    )
+    coordinator = PreciosTurCoordinator(hass, entry.data[CONF_URL], entry.data["category"])
     await coordinator.async_config_entry_first_refresh()
 
     # Store the coordinator in hass.data
@@ -35,9 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN][entry.entry_id] = coordinator
 
     # Forward the setup to the sensor platform
-    hass.async_create_task(
-        hass.config_entries.async_forward_entry_setup(entry, "sensor")
-    )
+    hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, "sensor"))
 
     return True
 

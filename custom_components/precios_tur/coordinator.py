@@ -19,6 +19,7 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 HTTP_OK = 200
 
+
 class PreciosTurCoordinator(DataUpdateCoordinator):
     """Class to manage fetching gas price data from the API."""
 
@@ -47,15 +48,9 @@ class PreciosTurCoordinator(DataUpdateCoordinator):
                 data = await response.json()
 
                 # Find the entry matching the specified category
-                matching_entries = [
-                    entry
-                    for entry in data.get("data", [])
-                    if entry.get("category") == self.category
-                ]
+                matching_entries = [entry for entry in data.get("data", []) if entry.get("category") == self.category]
 
-                _LOGGER.debug(
-                    f"Found {len(matching_entries)} entries for category {self.category}"
-                )
+                _LOGGER.debug(f"Found {len(matching_entries)} entries for category {self.category}")
                 if not matching_entries:
                     msg = f"No data found for category {self.category}"
                     raise UpdateFailed(msg)  # noqa: TRY301

@@ -5,7 +5,6 @@ from logging import Logger, getLogger
 LOGGER: Logger = getLogger(__package__)
 
 
-
 """Constants for the Precios TUR integration."""
 
 # Configuration keys

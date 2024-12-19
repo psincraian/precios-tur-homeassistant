@@ -60,9 +60,7 @@ async def async_setup_entry(
         PreciosTurSensor(
             coordinator,
             ATTR_FIXED_RATE,
-            translations.get(
-                f"component.{DOMAIN}.entity.sensor.fixed_rate.name", "Fixed Rate"
-            ),
+            translations.get(f"component.{DOMAIN}.entity.sensor.fixed_rate.name", "Fixed Rate"),
             config_entry.entry_id,
             config_entry.data["category"],
         ),
@@ -100,18 +98,12 @@ class PreciosTurSensor(SensorEntity):
     @property
     def available(self) -> bool:
         """Return if sensor is available."""
-        return (
-            self._coordinator.last_update_success and self._coordinator.data is not None
-        )
+        return self._coordinator.last_update_success and self._coordinator.data is not None
 
     @property
     def state(self) -> Any:
         """Return the state of the sensor."""
-        return (
-            self._coordinator.data.get(self._rate_type)
-            if self._coordinator.data
-            else None
-        )
+        return self._coordinator.data.get(self._rate_type) if self._coordinator.data else None
 
     @property
     def extra_state_attributes(self) -> dict:
@@ -127,9 +119,7 @@ class PreciosTurSensor(SensorEntity):
 
     async def async_added_to_hass(self) -> None:
         """Connect to dispatcher listening for data updates."""
-        self.async_on_remove(
-            self._coordinator.async_add_listener(self.async_write_ha_state)
-        )
+        self.async_on_remove(self._coordinator.async_add_listener(self.async_write_ha_state))
 
     async def async_update(self) -> Coroutine[Any, Any, None]:
         """Update the sensor."""
