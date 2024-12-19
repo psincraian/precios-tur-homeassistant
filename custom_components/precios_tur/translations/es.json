@@ -1,0 +1,29 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Precios de Gas",
+        "description": "Configurar el Precios de Gas"
+      }
+    },
+    "data": {
+      "url": "URL de la API",
+      "category": "Categoría"
+    },
+    "error": {
+      "cannot_connect": "No se puede conectar a la API",
+      "invalid_response": "Respuesta no válida de la API"
+    }
+  },
+  "sensor": {
+    "variable_rate": {
+      "name": "Tarifa Variable"
+    },
+    "fixed_rate": {
+      "name": "Tarifa Fija"
+    },
+    "total_rate": {
+      "name": "Tarifa Total"
+    }
+  }
+}

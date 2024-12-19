@@ -1,8 +1,5 @@
 """Sensor platform for Precios TUR."""
 import logging
-import aiohttp
-import async_timeout
-from datetime import timedelta
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -11,14 +8,10 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.const import (
     CURRENCY_EURO,
-    CONF_URL
 )
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from homeassistant.helpers.translation import async_get_translations
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import (
     DOMAIN,
@@ -31,7 +24,6 @@ from .coordinator import PreciosTurCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
-SCAN_INTERVAL = timedelta(minutes=10)
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -46,9 +38,11 @@ async def async_setup_entry(
     _LOGGER.debug(f"Data: {coordinator.data}")
 
     # Retrieve translations
+    user_language = hass.config.language
+    _LOGGER.debug(f"User language: {user_language}")
     translations = await async_get_translations(
         hass,
-        'en',
+        user_language,
         'sensor',
         [DOMAIN]
     )
@@ -58,7 +52,7 @@ async def async_setup_entry(
         PreciosTurSensor(
             coordinator,
             ATTR_VARIABLE_RATE,
-            translations.get(f'component.{DOMAIN}.sensor.variable_rate.name', 'Variable Rate'),
+            translations.get(f'component.{DOMAIN}.sensor.variable_rate.name', 'Variable Rate Hardcoded'),
             config_entry.entry_id,
             config_entry.data["category"]
         ),
