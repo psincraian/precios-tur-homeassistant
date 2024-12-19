@@ -1,26 +1,29 @@
 {
+  "title": "Precios Gas",
   "config": {
     "step": {
       "user": {
-        "title": "Gas Price Tracker",
-        "description": "Configure the gas price tracker"
+        "title": "Precios Gas",
+        "description": "Configure the Precios Gas",
+        "data": {
+          "url": "API URL",
+          "category": "Price Category"
+        }
       }
-    },
-    "data": {
-      "url": "API URL",
-      "category": "Price Category"
     },
     "error": {
       "cannot_connect": "Cannot connect to the API",
       "invalid_response": "Invalid response from the API"
     }
   },
-  "sensor": {
-    "variable_rate": {
-      "name": "Variable Rate"
-    },
-    "fixed_rate": {
-      "name": "Fixed Rate"
+  "entity": {
+    "sensor": {
+      "variable_rate": {
+        "name": "Variable Rate"
+      },
+      "fixed_rate": {
+        "name": "Fixed Rate"
+      }
     }
   }
 }

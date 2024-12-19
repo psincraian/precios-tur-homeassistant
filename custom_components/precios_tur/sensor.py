@@ -51,14 +51,14 @@ async def async_setup_entry(
         PreciosTurSensor(
             coordinator,
             ATTR_VARIABLE_RATE,
-            translations.get(f'component.{DOMAIN}.sensor.variable_rate.name', 'Variable Rate Hardcoded'),
+            translations.get(f'component.{DOMAIN}.entity.sensor.variable_rate.name', 'Variable Rate Hardcoded'),
             config_entry.entry_id,
             config_entry.data["category"]
         ),
         PreciosTurSensor(
             coordinator,
             ATTR_FIXED_RATE,
-            translations.get(f'component.{DOMAIN}.sensor.fixed_rate.name', 'Fixed Rate'),
+            translations.get(f'component.{DOMAIN}.entity.sensor.fixed_rate.name', 'Fixed Rate'),
             config_entry.entry_id,
             config_entry.data["category"]
         ),
