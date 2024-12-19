@@ -93,7 +93,6 @@ class PreciosTurSensor(SensorEntity):
         # Sensor configuration
         self._attr_device_class = SensorDeviceClass.MONETARY
         self._attr_state_class = SensorStateClass.MEASUREMENT
-        self._attr_unit_of_measurement = CURRENCY_EURO if rate_type == ATTR_FIXED_RATE else "EUR/kWh"
 
     @property
     def available(self) -> bool:
@@ -116,6 +115,13 @@ class PreciosTurSensor(SensorEntity):
             "source_url": self._coordinator.url,
             "category": self._coordinator.category,
         }
+
+    @property
+    def native_unit_of_measurement(self) -> str | None:
+        """Return the unit of measurement of this entity, if any."""
+        if self._rate_type == ATTR_FIXED_RATE:
+            return "Eur"
+        return "EUR/kWh"
 
     async def async_added_to_hass(self) -> None:
         """Connect to dispatcher listening for data updates."""
