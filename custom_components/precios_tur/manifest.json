@@ -1,10 +1,10 @@
 {
     "domain": "precios_tur",
     "name": "Precios TUR",
-    "config_flow": true,
     "codeowners": [
         "@psincraian"
     ],
+    "config_flow": true,
     "documentation": "https://github.com/psincraian/precios-tur-homeassistant",
     "integration_type": "service",
     "iot_class": "cloud_polling",
