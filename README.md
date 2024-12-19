@@ -8,11 +8,11 @@
 
 ## Overview
 
-The Precios TUR integration for Home Assistant allows you to track the current gas prices from the TUR (Tarifa de Último Recurso) service. This integration fetches data from the TUR API and provides sensors to monitor different types of gas rates.
+The Precios TUR integration for Home Assistant allows you to track the current gas prices from the TUR (Tarifa de Último Recurso) service. This integration fetches data from the [Precios TUR API](http://precios-tur.petru.tech) and provides sensors to monitor different types of gas rates.
 
 ## How It Works
 
-This integration uses the TUR API to fetch the latest gas prices. It sets up sensors in Home Assistant to display the current variable rate, fixed rate, and total rate for the selected category (TUR1, TUR2, or TUR3). The data is updated periodically to ensure you always have the latest information.
+This integration uses [Precios TUR API](http://precios-tur.petru.tech) to fetch the latest gas prices. It sets up sensors in Home Assistant to display the current variable rate, fixed rate, and total rate for the selected category (TUR1, TUR2, or TUR3). The data is updated periodically to ensure you always have the latest information.
 
 **This integration will set up the following platforms.**
 
