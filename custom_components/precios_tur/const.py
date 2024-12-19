@@ -4,10 +4,6 @@ from logging import Logger, getLogger
 
 LOGGER: Logger = getLogger(__package__)
 
-from homeassistant.const import (
-    CONF_URL,
-    CURRENCY_EURO,
-)
 
 
 """Constants for the Precios TUR integration."""
