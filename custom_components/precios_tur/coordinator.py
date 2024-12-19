@@ -29,7 +29,7 @@ class PreciosTurCoordinator(DataUpdateCoordinator):
         self,
         hass: HomeAssistant,
         url: str,
-        category: str = "TUR1"
+        category: str
     ):
         """Initialize the coordinator."""
         super().__init__(
