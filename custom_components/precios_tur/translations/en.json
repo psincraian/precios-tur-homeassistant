@@ -21,9 +21,6 @@
     },
     "fixed_rate": {
       "name": "Fixed Rate"
-    },
-    "total_rate": {
-      "name": "Total Rate"
     }
   }
 }

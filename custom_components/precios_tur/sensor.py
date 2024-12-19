@@ -17,7 +17,6 @@ from .const import (
     DOMAIN,
     ATTR_VARIABLE_RATE,
     ATTR_FIXED_RATE,
-    ATTR_TOTAL_RATE,
     ATTR_PRICE_DATE,
 )
 from .coordinator import PreciosTurCoordinator
@@ -63,13 +62,6 @@ async def async_setup_entry(
             config_entry.entry_id,
             config_entry.data["category"]
         ),
-        PreciosTurSensor(
-            coordinator,
-            ATTR_TOTAL_RATE,
-            translations.get(f'component.{DOMAIN}.sensor.total_rate.name', 'Total Rate'),
-            config_entry.entry_id,
-            config_entry.data["category"]
-        )
     ]
 
     async_add_entities(entities)

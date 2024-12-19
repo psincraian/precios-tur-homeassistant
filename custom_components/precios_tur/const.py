@@ -26,7 +26,6 @@ UPDATE_INTERVAL_SECONDS = 12 * 60 * 60  # 12 hours
 # Attributes
 ATTR_VARIABLE_RATE = "variable_rate"
 ATTR_FIXED_RATE = "fixed_rate"
-ATTR_TOTAL_RATE = "total_rate"
 ATTR_PRICE_DATE = "price_date"
 
 # Error messages

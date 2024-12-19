@@ -16,7 +16,6 @@ from .const import (
     UPDATE_INTERVAL_SECONDS,
     ATTR_VARIABLE_RATE,
     ATTR_FIXED_RATE,
-    ATTR_TOTAL_RATE,
     ATTR_PRICE_DATE,
 )
 
@@ -69,9 +68,6 @@ class PreciosTurCoordinator(DataUpdateCoordinator):
                 return {
                     ATTR_VARIABLE_RATE: entry.get('variableRate', 0),
                     ATTR_FIXED_RATE: entry.get('fixedRate', 0),
-                    ATTR_TOTAL_RATE: (
-                        entry.get('variableRate', 0) + entry.get('fixedRate', 0)
-                    ),
                     ATTR_PRICE_DATE: entry.get('date')
                 }
 

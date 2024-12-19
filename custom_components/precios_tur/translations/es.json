@@ -21,9 +21,6 @@
     },
     "fixed_rate": {
       "name": "Tarifa Fija"
-    },
-    "total_rate": {
-      "name": "Tarifa Total"
     }
   }
 }
