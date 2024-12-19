@@ -1,0 +1,22 @@
+# en.yaml
+config:
+  step:
+    user:
+      title: "Precios TUR"
+      description: "Configure your Precios TUR"
+  
+  data:
+    url: "API URL"
+    category: "Price Category"
+
+  error:
+    cannot_connect: "Unable to connect to the API"
+    invalid_response: "Invalid response from the API"
+
+sensor:
+  variable_rate:
+    name: "Gas Price Variable Rate"
+  fixed_rate:
+    name: "Gas Price Fixed Rate"
+  total_rate:
+    name: "Gas Price Total Rate"

@@ -1,0 +1,22 @@
+# es.yaml
+config:
+  step:
+    user:
+      title: "Rastreador de Precios de Gas"
+      description: "Configurar el rastreador de precios de gas"
+
+  data:
+    url: "URL de la API"
+    category: "Categoría de Precio"
+
+  error:
+    cannot_connect: "No se puede conectar a la API"
+    invalid_response: "Respuesta no válida de la API"
+
+sensor:
+  variable_rate:
+    name: "Tarifa Variable de Precio de Gas"
+  fixed_rate:
+    name: "Tarifa Fija de Precio de Gas"
+  total_rate:
+    name: "Tarifa Total de Precio de Gas"

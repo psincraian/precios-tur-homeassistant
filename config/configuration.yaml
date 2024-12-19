@@ -9,4 +9,5 @@ homeassistant:
 logger:
   default: info
   logs:
-    custom_components.integration_blueprint: debug
+    custom_components.precios_tur: debug
+    homeassistant.config_entries: debug

@@ -1,0 +1,16 @@
+{
+    "domain": "precios_tur",
+    "name": "Precios TUR",
+    "config_flow": true,
+    "documentation": "https://github.com/psincraian/precios-tur-homeassistant",
+    "requirements": [
+        "aiohttp",
+        "voluptuous"
+    ],
+    "codeowners": [
+        "@psincraian"
+    ],
+    "version": "1.0.0",
+    "iot_class": "cloud_polling",
+    "integration_type": "service"
+}
