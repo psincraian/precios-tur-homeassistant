@@ -34,9 +34,12 @@ Each sensor is named according to the selected category (TUR1, TUR2, or TUR3) du
 
 ### Using HACS
 
-Click on
+Since this project is not public yet, you need to add it as a custom repository in HACS.
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=psincraian&repository=precios-tur-homeassistant)
+1. Open Home Assistant and navigate to HACS.
+2. Click on the three dots menu in the top right corner and select "Custom repositories".
+3. Add the repository URL: `https://github.com/psincraian/precios-tur-homeassistant` and select the category as "Integration".
+4. Click "Add" and then search for "Precios TUR" in HACS and install it.
 
 
 ### Manual
