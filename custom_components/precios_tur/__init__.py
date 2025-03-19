@@ -32,8 +32,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.data[DOMAIN] = {}
     hass.data[DOMAIN][entry.entry_id] = coordinator
 
-    # Forward the setup to the sensor platform
-    hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, "sensor"))
+    # Await the sensor platform setup
+    await hass.config_entries.async_forward_entry_setup(entry, "sensor")
 
     return True
 
