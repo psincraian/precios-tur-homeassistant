@@ -13,6 +13,40 @@ jobs:
       - name: "Checkout repository"
         uses: actions/checkout@v4
 
+      - name: "Determine new version"
+        id: version
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Get the list of releases
+            const releases = await github.rest.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            // Default version if no stable release exists
+            let latestVersion = "0.0.0";
+            if (releases.data.length > 0) {
+              // Filter out prereleases to find the latest stable version
+              const stable = releases.data.filter(r => !r.prerelease);
+              if (stable.length > 0) {
+                stable.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+                latestVersion = stable[stable.length - 1].tag_name.replace(/^v/, '');
+              }
+            }
+            // Parse the version (default format: MAJOR.MINOR.PATCH)
+            const semverParts = latestVersion.split('.').map(Number);
+            while (semverParts.length < 3) {
+              semverParts.push(0);
+            }
+            // Increment minor version to indicate a new feature,
+            // and reset PATCH to 0.
+            semverParts[1] = semverParts[1] + 1;
+            semverParts[2] = 0;
+            // Create the new version with pre-release tag "a"
+            const newVersion = `v${semverParts.join('.')}-a`;
+            core.setOutput("new_version", newVersion);
+            return newVersion;
+
       - name: "ZIP the integration directory"
         shell: bash
         run: |
@@ -22,7 +56,7 @@ jobs:
       - name: "Create pre-release"
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "prerelease-${{ github.sha }}"
+          tag_name: ${{ steps.version.outputs.new_version }}
           prerelease: true
           files: ${{ github.workspace }}/custom_components/precios_tur/precios_tur.zip
         env:
