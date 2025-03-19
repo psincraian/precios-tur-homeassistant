@@ -1,0 +1,29 @@
+name: "Pre-release on commit to main"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  prerelease:
+    name: "Create a Pre-release"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "ZIP the integration directory"
+        shell: bash
+        run: |
+          cd "${{ github.workspace }}/custom_components/precios_tur"
+          zip precios_tur.zip -r ./
+
+      - name: "Create pre-release"
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "prerelease-${{ github.sha }}"
+          prerelease: true
+          files: ${{ github.workspace }}/custom_components/precios_tur/precios_tur.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
