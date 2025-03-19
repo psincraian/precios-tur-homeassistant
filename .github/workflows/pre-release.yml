@@ -41,12 +41,33 @@ jobs:
             while (semverParts.length < 3) {
               semverParts.push(0);
             }
-            // Increment minor version to indicate a new feature,
-            // and reset PATCH to 0.
+            // Increment minor version to indicate a new feature, and reset PATCH to 0.
             semverParts[1] = semverParts[1] + 1;
             semverParts[2] = 0;
-            // Create the new version with pre-release tag "a"
-            const newVersion = `v${semverParts.join('.')}-a`;
+            const baseTag = `v${semverParts.join('.')}-a`;
+            // Determine next alpha number based on existing pre-releases for the same base version.
+            const matchingPrereleases = releases.data.filter(r => {
+              // Make sure this is a prerelease and tag matches the base
+              return r.prerelease && r.tag_name.startsWith(baseTag);
+            });
+            let maxAlpha = 0;
+            matchingPrereleases.forEach(r => {
+              const match = r.tag_name.match(new RegExp(`^v${semverParts.join('\\.')}\\-a(\\d+)$`));
+              if (match) {
+                const alphaNum = parseInt(match[1]);
+                if (alphaNum > maxAlpha) {
+                  maxAlpha = alphaNum;
+                }
+              } else if (r.tag_name === baseTag) {
+                // Treat a tag with no number as a1.
+                if (maxAlpha < 1) {
+                  maxAlpha = 1;
+                }
+              }
+            });
+            // If no matching prerelease exists, start with a1.
+            const newAlpha = maxAlpha === 0 ? 1 : maxAlpha + 1;
+            const newVersion = `${baseTag}${newAlpha}`;
             core.setOutput("new_version", newVersion);
             return newVersion;
 
